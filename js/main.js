@@ -88,7 +88,7 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
   const book = new Book(title, author);
   UI.addBookToList(book);
 
-  Store.addBook(book);
+  Store.bookAdd(book);
 
   UI.clearFields();
 });
