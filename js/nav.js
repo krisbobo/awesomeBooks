@@ -1,10 +1,11 @@
 const year = document.querySelector('.year');
-const container = document.querySelector('main');
+const container = document.querySelector('.layout');
 const bookList = document.querySelector('.book');
 const contact = document.querySelector('.contact');
 const first = document.querySelector('.list');
 const second = document.querySelector('.add');
 const third = document.querySelector('.contact-me');
+const title = document.querySelector('.book-header');
 
 const options = {
   weekday: 'long',
@@ -33,6 +34,7 @@ second.addEventListener('click', (e) => {
   container.style.display = 'none';
   bookList.style.display = 'flex';
   contact.style.display = 'none';
+  title.style.display = 'none';
 });
 
 third.addEventListener('click', (e) => {
@@ -40,4 +42,5 @@ third.addEventListener('click', (e) => {
   container.style.display = 'none';
   bookList.style.display = 'none';
   contact.style.display = 'block';
+  title.style.display = 'none';
 });
