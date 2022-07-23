@@ -8,9 +8,24 @@
     <title>Awesome Books</title>
 </head>
 <body>
+    <header class="nav-container">
+        <div class="logo">
+          <a href="">Awesome Books </a>
+        </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li class="list">
+              <a href="#book-list" class="list">Book List</a>
+            </li>
+            <li class="list"><a href="#books" class="add">Add Books</a></li>
+            <li class="list"><a href="#cont" class="contact-me">Contact</a></li>
+          </ul>
+        </nav>
+    </header>
+
     <main>
         <h1 class="book-header">All Awesome Books</h1>
-        <section class="layout">
+        <section class="layout" id="book-list">
             <table class="table">
                 <thead>
                   <tr>
@@ -22,7 +37,7 @@
                 <tbody id="book-list"></tbody>
             </table>
         </section>
-        <section class="book">
+        <section class="book" id="books">
             <h2 class="description-header">Add A New Book</h2>
             <form id="book-form">   
                 <input type="text" placeholder="Title" id="title">
@@ -32,7 +47,7 @@
                 <button type="submit" id="add-button">Add Book</button>
             </form>
         </section>
-        <section class="contact">
+        <section class="contact" id="cont">
             <h2 class="contact-text">CONTACT INFORMATION</h2>
             <p class="contact-text">You can reach us on:</p>
             <ul class="contact-list">
