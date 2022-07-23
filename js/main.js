@@ -102,5 +102,5 @@ document.querySelector('#book-list').addEventListener('click', (e) => {
 
   // remove book from local store
 
-  Store.removeBook();
+  Store.bookRemoval();
 });
