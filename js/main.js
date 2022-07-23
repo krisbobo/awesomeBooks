@@ -37,3 +37,35 @@ class Store {
     localStorage.setItem('books', JSON.stringify(books));
   }
 }
+
+// ======== UI class: handle ui ========
+
+class UI {
+  static displayBooks() {
+    const books = Store.getBooks();
+    books.forEach((book) => UI.addBookToList(book));
+  }
+
+  static addBookToList(book) {
+    const list = document.querySelector('#book-list');
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+    <td>${book.title}</td>
+    <td>${book.author}</td>
+    <td><a href="#" class="delete">Remove</td>
+    `;
+    list.appendChild(row);
+  }
+
+  static deleteBook(del) {
+    if (del.classList.contains('delete')) {
+      del.parentElement.parentElement.remove();
+    }
+  }
+
+  static clearFields() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+  }
+}
