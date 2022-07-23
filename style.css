@@ -36,7 +36,7 @@ h1 {
   background: #fff;
   border-radius: 5px;
   border: 2px solid #000;
-  margin: 5px;
+  margin: 5px 20px;
 }
 
 th {
@@ -67,6 +67,7 @@ td {
   justify-content: center;
   margin: 0 auto;
   padding: 30px;
+  display: none;
 }
 
 h2 {
@@ -133,7 +134,7 @@ header {
   text-align: center;
   padding-top: 2%;
   padding-bottom: 2%;
-  line-height: 9vh;
+  line-height: 5vh;
   display: none;
 }
 
