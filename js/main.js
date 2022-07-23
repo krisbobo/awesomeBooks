@@ -1,58 +1,106 @@
-/* eslint-disable no-use-before-define */
-// Create array of books
-const bookTitle = document.querySelector('#title');
-const bookAuthor = document.querySelector('#author');
-const bookAdd = document.querySelector('#available-books');
-const btn = document.querySelector('#add-button');
-
-if (!localStorage.getItem('bookInfo')) {
-  localStorage.setItem('bookInfo', JSON.stringify([]));
-}
-
-let books;
-
-function saveBooks(book) {
-  localStorage.setItem('bookInfo', JSON.stringify(book));
-}
-
-/* eslint-disable no-use-before-define */
-
-function displayBookData() {
-  books = JSON.parse(localStorage.getItem('bookInfo'));
-  userUpdate();
-}
-displayBookData();
-
-function removeBook() {
-  books.splice(this, 1);
-  saveBooks(books);
-  displayBookData();
-}
-
-function userUpdate() {
-  bookAdd.innerHTML = '';
-  books.forEach((data, index) => {
-    const newBook = document.createElement('div');
-    newBook.classList.add('new-book');
-    const para = document.createElement('p');
-    para.textContent = `${data.bookTitle} By ${data.bookAuthor}`;
-    const removebtn = document.createElement('button');
-    removebtn.textContent = 'Remove';
-    removebtn.addEventListener('click', removeBook.bind(index));
-    newBook.appendChild(para);
-    newBook.appendChild(removebtn);
-    bookAdd.appendChild(newBook);
-  });
-}
-
-btn.addEventListener('click', (e) => {
-  e.preventDefault();
-  if (bookTitle.value && bookAuthor.value) {
-    const bookObj = { bookTitle: bookTitle.value, bookAuthor: bookAuthor.value };
-    books.push(bookObj);
-    saveBooks(books);
-    displayBookData();
-    bookTitle.value = '';
-    bookAuthor.value = '';
+// ======== book class: book representation =========
+// eslint-disable-next-line max-classes-per-file
+class Book {
+  constructor(title, author) {
+    this.title = title;
+    this.author = author;
   }
+}
+
+// ======= class storage: handle local storage ==========
+
+class Store {
+  static getBooks() {
+    let books;
+    if (localStorage.getItem('books') === null) {
+      books = [];
+    } else {
+      books = JSON.parse(localStorage.getItem('books'));
+    }
+    return books;
+  }
+
+  static bookAdd(book) {
+    const books = Store.getBooks();
+    books.push(book);
+    localStorage.setItem('books', JSON.stringify(books));
+  }
+
+  static bookRemoval(del) {
+    const books = Store.getBooks();
+    books.forEach((book, index) => {
+      if (book.del === del) {
+        books.splice(index, 1);
+      }
+    });
+
+    localStorage.setItem('books', JSON.stringify(books));
+  }
+}
+
+// ======== UI class: handle ui ========
+
+class UI {
+  static displayBooks() {
+    const books = Store.getBooks();
+    books.forEach((book) => UI.addBookToList(book));
+  }
+
+  static addBookToList(book) {
+    const list = document.querySelector('#book-list');
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+    <td>${book.title}</td>
+    <td>${book.author}</td>
+    <td><a href="#" class="delete">Remove</td>
+    `;
+    list.appendChild(row);
+  }
+
+  static deleteBook(del) {
+    if (del.classList.contains('delete')) {
+      del.parentElement.parentElement.remove();
+    }
+  }
+
+  static clearFields() {
+    document.querySelector('#title').value = '';
+    document.querySelector('#author').value = '';
+  }
+}
+
+// ============== event: display books ============
+
+document.addEventListener('DOMContentLoaded', UI.displayBooks);
+
+// ============== event: add a book =============
+
+document.querySelector('#book-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // get the form value
+
+  const title = document.querySelector('#title').value;
+  const author = document.querySelector('#author').value;
+
+  if (!title || !author) return;
+  const book = new Book(title, author);
+  UI.addBookToList(book);
+
+  Store.bookAdd(book);
+
+  UI.clearFields();
+});
+
+// ============event: remove a book ============
+
+document.querySelector('#book-list').addEventListener('click', (e) => {
+  // remove book from UI
+
+  UI.deleteBook(e.target);
+
+  // remove book from local store
+
+  Store.bookRemoval();
 });
