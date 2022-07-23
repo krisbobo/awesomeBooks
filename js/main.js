@@ -92,3 +92,15 @@ document.querySelector('#book-form').addEventListener('submit', (e) => {
 
   UI.clearFields();
 });
+
+// ============event: remove a book ============
+
+document.querySelector('#book-list').addEventListener('click', (e) => {
+  // remove book from UI
+
+  UI.deleteBook(e.target);
+
+  // remove book from local store
+
+  Store.removeBook();
+});
