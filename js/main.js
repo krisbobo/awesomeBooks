@@ -69,3 +69,26 @@ class UI {
     document.querySelector('#author').value = '';
   }
 }
+
+// ============== event: display books ============
+
+document.addEventListener('DOMContentLoaded', UI.displayBooks);
+
+// ============== event: add a book =============
+
+document.querySelector('#book-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  // get the form value
+
+  const title = document.querySelector('#title').value;
+  const author = document.querySelector('#author').value;
+
+  if (!title || !author) return;
+  const book = new Book(title, author);
+  UI.addBookToList(book);
+
+  Store.addBook(book);
+
+  UI.clearFields();
+});
