@@ -8,7 +8,23 @@
     <title>Awesome Books</title>
 </head>
 <body>
+    <header class="nav-container">
+        <div class="logo">
+          <a href="">Awesome Books </a>
+        </div>
+        <nav class="menu">
+          <ul class="nav-list">
+            <li class="list">
+              <a href="" class="list">Book List</a>
+            </li>
+            <li class="list"><a href="" class="add">Add Books</a></li>
+            <li class="list"><a href="" class="contact-me">Contact</a></li>
+          </ul>
+        </nav>
+    </header>
+
     <main>
+        <div class="date"><p class="year"></p></div>
         <h1 class="book-header">All Awesome Books</h1>
         <section class="layout">
             <table class="table">
@@ -32,7 +48,21 @@
                 <button type="submit" id="add-button">Add Book</button>
             </form>
         </section>
+        <section class="contact">
+            <h2 class="contact-text">CONTACT INFORMATION</h2>
+            <p class="contact-text">You can reach us on:</p>
+            <ul class="contact-list">
+                <li>Our email: contactus@mail.com</li>
+                <li>Our phone number: 0043586534422</li>
+                <li>Our address: Streetname 22, 84503 Tokyo, Japan</li>
+            </ul>
+        </section>
     </main>
+
+    <footer>
+        <h2>&copy; Copyright Awesome Book Publishers</h2>
+    </footer>
+    <script src="./js/nav.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>
