@@ -124,8 +124,8 @@ header {
 
 .year {
   color: #ff7f50;
-  margin: 10px 10px 0 0;
-  font-size: 1.2rem;
+  margin: 10px 0 0 0;
+  font-size: 1rem;
   text-align: end;
 }
 
