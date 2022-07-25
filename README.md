@@ -11,7 +11,7 @@
 
 ## Live Demo
 
-![Image](https://krisbobo.github.io/awesomeBooks/))
+![AwesomeBooks](https://krisbobo.github.io/awesomeBooks/)
 
 ## Getting Started
 
